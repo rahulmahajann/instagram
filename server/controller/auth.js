@@ -52,7 +52,7 @@ const signIn = async (req, res) => {
     const password = req.body.password;
 
     if(!username || !password){
-        return res.status(422).json({message: 'please fill all the fields'});        
+        return res.json({message: 'please fill all the fields'});        
     }
 
     const isUserName = await User.findOne({
@@ -62,12 +62,12 @@ const signIn = async (req, res) => {
     if(isUserName){
         const validPassword = await bcrypt.compare(password, isUserName.password);
         if(validPassword){
-            return res.status(200).json({message: 'successfully logged in!'})
+            return res.json({message: 'successfully logged in!'})
         }else{
-            return res.status(422).json({message: 'username or password is not valid'})
+            return res.json({message: 'username or password is not valid'})
         }
     }else{  
-        return res.status(422).json({message: 'username or password is not valid'})
+        return res.json({message: 'username or password is not valid'})
     }
 
 }

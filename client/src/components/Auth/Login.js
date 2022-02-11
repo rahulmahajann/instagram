@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { signin } from '../services/api';
+import { useNavigate } from 'react-router-dom';
 
 const initialValue = {
     username: '',
@@ -7,12 +9,38 @@ const initialValue = {
 }
 
 function Login(){
+
+    const [userData, setUserData] = useState(initialValue);
+    const navigate = useNavigate();
+
+    const validateData = async (e) => {
+        e.preventDefault();
+        console.log('click hua!');
+        console.log(userData);
+        const apiResponse = await signin(userData);
+        if (apiResponse.message === 'successfully logged in!'){
+            navigate('/home')
+        }else{
+            alert(apiResponse.message);
+        }
+
+    }
+
+    const handleChange = (e) => {
+        setUserData({
+            ...userData,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    console.log(userData);
+
     return(
         <>
             <form>
-                <input type="text" name="username" placeholder="username" required />
-                <input type = 'password' name="password" placeholder="password" required />
-                <button type = 'submit'>Login</button>
+                <input type="text" name="username" onChange = { (e) => handleChange(e) } placeholder="username" required />
+                <input type = 'password' name="password" onChange = { (e) => handleChange(e) } placeholder="password" required />
+                <button type = 'submit' onClick = { (e) => validateData(e) }>Login</button>
             </form>
             <Link to = {'/resetpassword'}>
                 <p>forgot password? Reset here!</p>
