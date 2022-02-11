@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { signup } from '../services/api';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const initialValue = {
     username: '',
@@ -13,7 +13,6 @@ const initialValue = {
 function Signup(){
 
     const [userData, setUserData] = useState(initialValue);
-    const [responseData, setResponseData] = useState('');
 
     const navigate = useNavigate();
 
@@ -24,9 +23,9 @@ function Signup(){
         const apiResponse = await signup(userData);
         console.log(apiResponse);
         if(apiResponse.message === 'signup successfull'){
-            navigate('/')
+            navigate('/');
         }else{
-            setResponseData(apiResponse.message);
+            alert(apiResponse.message);
         }
     }
 
@@ -48,7 +47,9 @@ function Signup(){
             <input type = 'text' name="phoneNumber" placeholder="phone number" onChange={ (e) => handleChange(e) } required />
             <button type = 'submit' onClick={ (e) => saveData(e) } >Sign Up</button>
         </form>
-        <h1>{responseData}</h1>
+        <Link to = {'/'}>
+            <p>have account? login!</p>
+        </Link>
         </>
     )
 }

@@ -14,7 +14,8 @@ export const signup = async (userData) => {
 export const signin = async(userData) => {
     try{
         const awazAii = await axios.post(`${URL}/signIn`, userData);
-        return {message: awazAii.data.message};
+        console.log(awazAii.data);
+        return {information: awazAii.data};
     }catch(err){
         console.log(err);
     }

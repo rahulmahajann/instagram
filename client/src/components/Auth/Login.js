@@ -18,7 +18,9 @@ function Login(){
         console.log('click hua!');
         console.log(userData);
         const apiResponse = await signin(userData);
-        if (apiResponse.message === 'successfully logged in!'){
+        console.log(apiResponse);
+        if (apiResponse.information.message === 'successfully logged in!'){
+            localStorage.setItem("token", apiResponse.information.token);
             navigate('/home')
         }else{
             alert(apiResponse.message);

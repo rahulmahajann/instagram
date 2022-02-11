@@ -1,5 +1,8 @@
 const User = require('../model/user');
 const bcrypt = require('bcryptjs');
+const JWT = require('jsonwebtoken');
+
+const JWT_SECRET = 'fghjmnvgnv';
 
 const signUp = async (req, res) => {
     const username = req.body.username;
@@ -48,6 +51,8 @@ const signUp = async (req, res) => {
 }
 
 const signIn = async (req, res) => {
+
+
     const username = req.body.username;
     const password = req.body.password;
 
@@ -62,7 +67,11 @@ const signIn = async (req, res) => {
     if(isUserName){
         const validPassword = await bcrypt.compare(password, isUserName.password);
         if(validPassword){
-            return res.json({message: 'successfully logged in!'})
+            const token = JWT.sign({_id: isUserName._id}, JWT_SECRET);
+            return res.json({
+                message: 'successfully logged in!',
+                token
+            })
         }else{
             return res.json({message: 'username or password is not valid'})
         }
