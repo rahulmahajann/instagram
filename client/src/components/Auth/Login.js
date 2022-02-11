@@ -16,9 +16,9 @@ function Login(){
     const validateData = async (e) => {
         e.preventDefault();
         console.log('click hua!');
-        console.log(userData);
+        // console.log(userData);
         const apiResponse = await signin(userData);
-        console.log(apiResponse);
+        // console.log(apiResponse);
         if (apiResponse.information.message === 'successfully logged in!'){
             localStorage.setItem("token", apiResponse.information.token);
             navigate('/home')
@@ -35,7 +35,7 @@ function Login(){
         })
     }
 
-    console.log(userData);
+    // console.log(userData);
 
     return(
         <>
@@ -44,7 +44,7 @@ function Login(){
                 <input type = 'password' name="password" onChange = { (e) => handleChange(e) } placeholder="password" required />
                 <button type = 'submit' onClick = { (e) => validateData(e) }>Login</button>
             </form>
-            <Link to = {'/resetpassword'}>
+            <Link to = {'/finduserforreset'}>
                 <p>forgot password? Reset here!</p>
             </Link>
             <Link to = {'/signup'}>

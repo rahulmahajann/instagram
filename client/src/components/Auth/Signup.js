@@ -19,9 +19,9 @@ function Signup(){
     const saveData = async (e) => {
         e.preventDefault();
         console.log('click krdo!');
-        console.log(userData);
+        // console.log(userData);
         const apiResponse = await signup(userData);
-        console.log(apiResponse);
+        // console.log(apiResponse);
         if(apiResponse.message === 'signup successfull'){
             navigate('/');
         }else{
@@ -35,7 +35,7 @@ function Signup(){
             [e.target.name]: e.target.value
         })
     }
-    console.log(userData);
+    // console.log(userData);
 
     return(
         <>

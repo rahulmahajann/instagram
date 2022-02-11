@@ -81,4 +81,26 @@ const signIn = async (req, res) => {
 
 }
 
-module.exports = { signUp, signIn };
+const findUserByUserName = async (req, res) => {
+    const username = req.body.username;
+    
+    if(!username){
+        return res.json({message: 'please enter the username for resetting the password'});        
+    }
+
+    const isUserName = await User.findOne({
+        username: username
+    })
+
+    if(isUserName){
+        return res.json({
+            message: 'user exist',
+            userDetail: isUserName
+        })
+    }else{
+        return res.json({message: "this username doesn't exist"})
+    }
+    
+}
+
+module.exports = { signUp, signIn, findUserByUserName };

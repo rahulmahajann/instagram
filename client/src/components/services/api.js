@@ -14,8 +14,18 @@ export const signup = async (userData) => {
 export const signin = async(userData) => {
     try{
         const awazAii = await axios.post(`${URL}/signIn`, userData);
-        console.log(awazAii.data);
+        // console.log(awazAii.data);
         return {information: awazAii.data};
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export const usrByName = async(userData) => {
+    try{
+        const awazAii = await axios.post(`${URL}/usrbyname`, userData);
+        console.log(awazAii);
+        return awazAii.data;
     }catch(err){
         console.log(err);
     }
