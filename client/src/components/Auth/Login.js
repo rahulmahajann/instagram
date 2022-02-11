@@ -15,15 +15,17 @@ function Login(){
 
     const validateData = async (e) => {
         e.preventDefault();
-        console.log('click hua!');
+        // console.log('click hua!');
         // console.log(userData);
         const apiResponse = await signin(userData);
         // console.log(apiResponse);
+        // console.log(apiResponse.information.name);
         if (apiResponse.information.message === 'successfully logged in!'){
             localStorage.setItem("token", apiResponse.information.token);
+            localStorage.setItem("name", apiResponse.information.nameOfUser);
             navigate('/home')
         }else{
-            alert(apiResponse.message);
+            alert(apiResponse.information.message);
         }
 
     }

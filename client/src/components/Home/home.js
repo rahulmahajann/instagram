@@ -1,8 +1,13 @@
 import React from 'react';
 
 function Home(){
+
+    const data = localStorage.getItem('name')
+
     return(
-        <h1>welcome to our site</h1>
+        <>
+            <h1>hello {data}</h1>
+        </>
     )
 }
 

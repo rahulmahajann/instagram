@@ -14,7 +14,7 @@ export const signup = async (userData) => {
 export const signin = async(userData) => {
     try{
         const awazAii = await axios.post(`${URL}/signIn`, userData);
-        // console.log(awazAii.data);
+        // console.log(awazAii);
         return {information: awazAii.data};
     }catch(err){
         console.log(err);
@@ -24,7 +24,17 @@ export const signin = async(userData) => {
 export const usrByName = async(userData) => {
     try{
         const awazAii = await axios.post(`${URL}/usrbyname`, userData);
-        console.log(awazAii);
+        // console.log(awazAii);
+        return awazAii.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export const resetpassword = async(userData, password) => {
+    try{    
+        const awazAii = await axios.put(`${URL}/resetpassword`, {userData, password});
+        // console.log(awazAii);
         return awazAii.data;
     }catch(err){
         console.log(err);

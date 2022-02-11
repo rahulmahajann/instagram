@@ -12,7 +12,7 @@ const signUp = async (req, res) => {
     const phoneNumber = req.body.phoneNumber;
 
     if(!username || !emailId || !password || !name || !phoneNumber){
-        return res.status(422).json({message: 'please fill all the fields'});
+        return res.json({message: 'please fill all the fields'});
     }
 
     const isUserName = await User.findOne({
@@ -70,7 +70,8 @@ const signIn = async (req, res) => {
             const token = JWT.sign({_id: isUserName._id}, JWT_SECRET);
             return res.json({
                 message: 'successfully logged in!',
-                token
+                token,
+                nameOfUser: isUserName.name
             })
         }else{
             return res.json({message: 'username or password is not valid'})
@@ -103,4 +104,27 @@ const findUserByUserName = async (req, res) => {
     
 }
 
-module.exports = { signUp, signIn, findUserByUserName };
+const resetPassword = async (req, res) => {
+    const id = req.body.userData;
+    const password = req.body.password;
+
+    console.log(req.body);
+    console.log(id, password);
+
+    const newPassword = await bcrypt.hash(password, 15);
+
+    const oldUser = User.findOne({_id: id})
+    // console.log(oldUser);
+
+    await User.findByIdAndUpdate(id, {
+        password: newPassword
+    })
+    
+    res.json('password changed successfully');
+
+    const newUser = User.find({_id: id})
+    // console.log(newUser);
+
+}
+
+module.exports = { signUp, signIn, findUserByUserName, resetPassword };
