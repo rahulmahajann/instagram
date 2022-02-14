@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { usrByName } from '../services/api';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import ValidateUserByOtp from './ValidateUserByOtp';
 
 const initialValue = {
@@ -12,7 +12,7 @@ function FindUserForReset(){
     const [userData, setUserData] = useState(initialValue);
     const [isNextComponent, setIsNextComponent] = useState(false);
     const [userDetailForVerification, setUserDetailForVerification] = useState({}); 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handleChange = (e) => {
         setUserData({
