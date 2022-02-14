@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { usrByName } from '../services/api';
 // import { useNavigate } from 'react-router-dom';
 import ValidateUserByOtp from './ValidateUserByOtp';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
 
 const initialValue = {
     username: ''
@@ -29,10 +34,12 @@ function FindUserForReset(){
         const apiResponse = await usrByName(userData);
         // console.log(apiResponse.userDetail);
         if(apiResponse.message === 'user exist'){
+            toast.success('wohoo! user found!');
             setUserDetailForVerification(apiResponse.userDetail);
             setIsNextComponent(true);
         }else{
-            alert(apiResponse.message)
+            // alert(apiResponse.message)
+            toast.error(apiResponse.message);
         }
     }
     // console.log(userDetailForVerification);

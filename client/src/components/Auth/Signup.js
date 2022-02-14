@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { signup } from '../services/api';
 import { useNavigate, Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const initialValue = {
     username: '',
@@ -9,6 +11,8 @@ const initialValue = {
     name: '',
     phoneNumber: ''
 }
+
+toast.configure();
 
 function Signup(){
 
@@ -23,9 +27,10 @@ function Signup(){
         const apiResponse = await signup(userData);
         // console.log(apiResponse);
         if(apiResponse.message === 'signup successfull'){
+            toast.success('signup successfull');
             navigate('/');
         }else{
-            alert(apiResponse.message);
+            toast.error('duplicate data please try again');
         }
     }
 

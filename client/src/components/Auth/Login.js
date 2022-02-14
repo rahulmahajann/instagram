@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { signin } from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const initialValue = {
     username: '',
     password: ''
 }
+
+toast.configure();
 
 function Login(){
 
@@ -23,8 +27,10 @@ function Login(){
         if (apiResponse.information.message === 'successfully logged in!'){
             localStorage.setItem("token", apiResponse.information.token);
             localStorage.setItem("name", apiResponse.information.nameOfUser);
+            toast.success('logged in succesful')
             navigate('/home')
         }else{
+            toast.error('logged in unsuccessfull')
             alert(apiResponse.information.message);
         }
 
@@ -50,7 +56,7 @@ function Login(){
                 <p>forgot password? Reset here!</p>
             </Link>
             <Link to = {'/signup'}>
-                <p>don't have account? SingUp</p>
+                <p>don't have account? SignUp</p>
             </Link>
         </>
     )

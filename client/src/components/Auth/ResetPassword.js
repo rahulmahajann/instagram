@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
 import { resetpassword } from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 function ResetPassword(props){
 
@@ -15,7 +19,7 @@ function ResetPassword(props){
         // console.log(userDetail._id, password);
         const apiResponse = await resetpassword(userDetail._id, password);
         // console.log(apiResponse);
-        alert(apiResponse);
+        toast.success(apiResponse);
         navigate('/');
 
     }
