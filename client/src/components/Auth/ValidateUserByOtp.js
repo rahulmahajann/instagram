@@ -4,7 +4,15 @@ import ResetPassword from './ResetPassword';
 
 function ValidateUserByOtp(props){
     const userDetail = props.data;
-    // console.log(userDetail);
+    console.log(userDetail);
+    let userEmailId = userDetail.emailId;
+    const indexOfAt = userEmailId.indexOf('@');
+    userEmailId = userEmailId.split('');
+    for(var i = 1; i < indexOfAt-1; i++){
+        userEmailId[i] = '*'
+    }
+    userEmailId = userEmailId.join('');
+
     const userPhoneNumber = userDetail.phoneNumber;
     const sliceUserPhoneNumber = userPhoneNumber.slice(6, userPhoneNumber.length);
     
@@ -35,7 +43,7 @@ function ValidateUserByOtp(props){
 
     return(
         <>
-            <h3>Otp Shared on *****{sliceUserPhoneNumber}</h3>
+            <h3>Otp Shared on {userEmailId}</h3>
             <form>
                 <input type = 'text' disabled = {isResetScreen} name="Otp" placeholder="Enter Otp" onChange={ (e) => handleChange(e) } required />
                 <button type = 'submit' disabled = {isResetScreen} onClick={ (e) => submitHandler(e) }>Validate Otp</button>
