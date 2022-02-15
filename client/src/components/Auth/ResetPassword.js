@@ -9,7 +9,7 @@ toast.configure();
 function ResetPassword(props){
 
     const userDetail = props.data;
-    console.log(userDetail);
+    // console.log(userDetail);
     const [password, setPassword] = useState();
     const navigate = useNavigate();
 
