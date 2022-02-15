@@ -13,9 +13,6 @@ function ValidateUserByOtp(props){
     }
     userEmailId = userEmailId.join('');
 
-    const userPhoneNumber = userDetail.phoneNumber;
-    const sliceUserPhoneNumber = userPhoneNumber.slice(6, userPhoneNumber.length);
-    
     const navigate = useNavigate();
     const [otpValue, setOtpValue] = useState('');
     const [isResetScreen, setIsResetScreen] = useState(false);

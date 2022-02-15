@@ -1,5 +1,6 @@
 const User = require('../model/user');
 const bcrypt = require('bcryptjs');
+const nodemailer = require('nodemailer');
 const JWT = require('jsonwebtoken');
 
 const JWT_SECRET = 'fghjmnvgnv';
@@ -127,4 +128,31 @@ const resetPassword = async (req, res) => {
 
 }
 
-module.exports = { signUp, signIn, findUserByUserName, resetPassword };
+const sendemail = async (req, res) => {
+    const emailId = 'mehulp1612@gmail.com'
+
+    const transpoter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'instagramclone0201@gmail.com',
+            pass: 'fjdklahntkkfsdwm'
+        }
+    })
+
+    const mailOptions = {
+        from: 'instagramclone0201@gmail.com',
+        to: emailId,
+        subject: 'password lelo bhai!',
+        text: 'fjdklahntkkfsdwm'
+    }
+
+    transpoter.sendMail(mailOptions, (err, info) => {
+        if(err){
+            console.log(err);
+        }else{
+            console.log(info.response);
+        }
+    })
+}
+
+module.exports = { signUp, signIn, findUserByUserName, resetPassword, sendemail };
