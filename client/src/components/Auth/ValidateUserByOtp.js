@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { verifyOTP } from '../services/api';
 import ResetPassword from './ResetPassword';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 function ValidateUserByOtp(props){
-    const userDetail = props.data;
-    console.log(userDetail);
-    let userEmailId = userDetail.emailId;
+    // console.log(props);
+    const userId = props.data.userId;
+    const userDetail = props.data.emailId;
+    const encryptedOTP = props.data.OTP;
+    // console.log(userDetail);
+    let userEmailId = userDetail;
     const indexOfAt = userEmailId.indexOf('@');
     userEmailId = userEmailId.split('');
     for(var i = 1; i < indexOfAt-1; i++){
@@ -28,13 +36,15 @@ function ValidateUserByOtp(props){
         navigate('/');
     }
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
+        const apiResponse = await verifyOTP(otpValue, encryptedOTP);
+        // console.log(apiResponse);
         // console.log('click hua!');
-        if(0==0){
+        if(apiResponse.message){
             setIsResetScreen(true);
         }else{
-            alert('entered otp is incorrect');
+            toast.error('entered otp is incorrect');
         }
     }
 
@@ -47,7 +57,7 @@ function ValidateUserByOtp(props){
                 <button type = 'submit' disabled = {isResetScreen} onClick={(e) => cancelButton(e)} >Cancel</button>
             </form>
 
-            {isResetScreen ? <ResetPassword data = {userDetail} /> : ''}
+            {isResetScreen ? <ResetPassword data = {userId} /> : ''}
         </>
     )
 }

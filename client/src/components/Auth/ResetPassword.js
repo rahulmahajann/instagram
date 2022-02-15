@@ -9,7 +9,7 @@ toast.configure();
 function ResetPassword(props){
 
     const userDetail = props.data;
-
+    console.log(userDetail);
     const [password, setPassword] = useState();
     const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ function ResetPassword(props){
         e.preventDefault();
         // console.log('click hua!');
         // console.log(userDetail._id, password);
-        const apiResponse = await resetpassword(userDetail._id, password);
+        const apiResponse = await resetpassword(userDetail, password);
         // console.log(apiResponse);
         toast.success(apiResponse);
         navigate('/');

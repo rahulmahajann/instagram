@@ -12,11 +12,17 @@ const initialValue = {
     username: ''
 }
 
+const secondInitialValue = {
+    emailId: '',
+    userId: '',
+    OTP: ''
+}
+
 function FindUserForReset(){
 
     const [userData, setUserData] = useState(initialValue);
     const [isNextComponent, setIsNextComponent] = useState(false);
-    const [userDetailForVerification, setUserDetailForVerification] = useState({}); 
+    const [userDetailForVerification, setUserDetailForVerification] = useState(secondInitialValue); 
     // const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -32,10 +38,15 @@ function FindUserForReset(){
         e.preventDefault();
         // console.log('printhua');    
         const apiResponse = await usrByName(userData);
-        // console.log(apiResponse.userDetail);
+        // console.log(apiResponse);
         if(apiResponse.message === 'user exist'){
             toast.success('wohoo! user found!');
-            setUserDetailForVerification(apiResponse.userDetail);
+            setUserDetailForVerification({
+                ...userDetailForVerification,
+                emailId: apiResponse.userEmail,
+                userId: apiResponse.userId,
+                OTP: apiResponse.OTP
+            });
             setIsNextComponent(true);
         }else{
             // alert(apiResponse.message)

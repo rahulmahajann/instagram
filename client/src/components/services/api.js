@@ -40,3 +40,13 @@ export const resetpassword = async(userData, password) => {
         console.log(err);
     }
 }
+
+export const verifyOTP = async (otpValue, encryptedOTP) => {
+    try{
+        const awazAii = await axios.post(`${URL}/verifyotp`, {otpValue, encryptedOTP});
+        // console.log(awazAii.data);
+        return awazAii.data;
+    }catch(err){
+        console.log(err);
+    }
+}

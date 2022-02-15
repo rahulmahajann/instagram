@@ -94,10 +94,44 @@ const findUserByUserName = async (req, res) => {
         username: username
     })
 
+    // console.log(isUserName);
+
     if(isUserName){
+
+        const emailId = isUserName.emailId;
+
+        const digits = '0123456789';
+
+        let OTP = '';
+
+        for(var i = 0; i < 6; i++){
+            OTP += digits[Math.floor(Math.random() * 10)]
+        }
+        
+        const encryptedOTP = await bcrypt.hash(OTP, 16);
+
+        const transpoter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'instagramclone0201@gmail.com',
+                pass: 'fjdklahntkkfsdwm'
+            }
+        })
+    
+        const mailOptions = {
+            from: 'instagramclone0201@gmail.com',
+            to: emailId,
+            subject: 'One Time Password',
+            text: `Your OTP for reseting password on INSTA CLONE is: ${OTP}`
+        }
+    
+        transpoter.sendMail(mailOptions);
+
         return res.json({
             message: 'user exist',
-            userDetail: isUserName
+            userEmail: isUserName.emailId,
+            userId: isUserName._id,
+            OTP: encryptedOTP
         })
     }else{
         return res.json({message: "this username doesn't exist"})
@@ -106,6 +140,9 @@ const findUserByUserName = async (req, res) => {
 }
 
 const resetPassword = async (req, res) => {
+    
+    // console.log();
+
     const id = req.body.userData;
     const password = req.body.password;
 
@@ -114,12 +151,14 @@ const resetPassword = async (req, res) => {
 
     const newPassword = await bcrypt.hash(password, 15);
 
-    const oldUser = User.findOne({_id: id})
+    const oldUser = User.find({_id: id})
     // console.log(oldUser);
 
-    await User.findByIdAndUpdate(id, {
+    const info = await User.findByIdAndUpdate(id, {
         password: newPassword
     })
+
+    console.log(info);
     
     res.json('password changed successfully');
 
@@ -128,31 +167,25 @@ const resetPassword = async (req, res) => {
 
 }
 
-const sendemail = async (req, res) => {
-    const emailId = 'mehulp1612@gmail.com'
+const verifyOTP = async (req, res) => {
+    const sentOTP = req.body.encryptedOTP;
+    const userOTP = req.body.otpValue;
 
-    const transpoter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'instagramclone0201@gmail.com',
-            pass: 'fjdklahntkkfsdwm'
-        }
+    const validOTP = await bcrypt.compare(userOTP, sentOTP)
+
+    console.log(validOTP);
+
+    return res.json({
+        message: validOTP
     })
 
-    const mailOptions = {
-        from: 'instagramclone0201@gmail.com',
-        to: emailId,
-        subject: 'password lelo bhai!',
-        text: 'fjdklahntkkfsdwm'
-    }
+    // if(validOTP){
+        
+    // }else{
+    //     res
+    // }
 
-    transpoter.sendMail(mailOptions, (err, info) => {
-        if(err){
-            console.log(err);
-        }else{
-            console.log(info.response);
-        }
-    })
+    // console.log(sentOTP, userOTP);
 }
 
-module.exports = { signUp, signIn, findUserByUserName, resetPassword, sendemail };
+module.exports = { signUp, signIn, findUserByUserName, resetPassword, verifyOTP };

@@ -31,7 +31,7 @@ function Login(){
             navigate('/home')
         }else{
             toast.error('logged in unsuccessfull')
-            alert(apiResponse.information.message);
+            // alert(apiResponse.information.message);
         }
 
     }
