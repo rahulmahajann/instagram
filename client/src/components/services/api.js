@@ -83,3 +83,13 @@ export const createNewPost = async(postInformation) => {
         console.log(err);
     }
 }
+
+export const getAllPosts = async () => {
+    try{
+        const awazAii = await axios.get(`${URL}/getallpost`);
+        // console.log(awazAii);
+        return awazAii.data;
+    }catch(err){
+        console.log(err);
+    }
+}

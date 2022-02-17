@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getUserDetails, getUserPosts } from '../services/api';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function Profile(){
 
@@ -35,7 +35,7 @@ function Profile(){
         fetchPost();
     }, [])
 
-    console.log(postData);
+    // console.log(postData);
     const newData = Object.values(data)
     // console.log(newData);
     
@@ -51,6 +51,7 @@ function Profile(){
             <button onClick={(e) => handleChange(e)}>
                 Create New Post
             </button>
+            <Link to = {'/home'}>Home</Link>
 
             {
                 postData && postData.map((item, ind) => (

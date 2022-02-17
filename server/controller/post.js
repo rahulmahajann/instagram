@@ -40,7 +40,9 @@ const getAllPost = async (req, res) => {
     const allPosts = await Post.find().populate({path: 'postedBy', select: 'username name' });
 
     console.log(allPosts);
-    res.json('kuch mila')
+    res.json({
+        posts: allPosts
+    })
 }
 
 const getUserPost = async (req, res) => {
