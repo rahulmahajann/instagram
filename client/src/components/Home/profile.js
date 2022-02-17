@@ -47,10 +47,22 @@ function Profile(){
                     <p key = {ind}>{item}</p>
                 ))
             }
-            
+
             <button onClick={(e) => handleChange(e)}>
                 Create New Post
             </button>
+
+            {
+                postData && postData.map((item, ind) => (
+                    <ul key = {ind}>
+                        <li>{item.caption}</li>
+                        <li>{item.postImage}</li>
+                        <li>{item.postedBy}</li>
+                    </ul>
+                ))
+            }
+            
+            
         </>
     )
 }
