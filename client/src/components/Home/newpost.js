@@ -36,7 +36,7 @@ function NewPost(){
         if(data.message){
             navigate(`/profile/${username}`)
         }else{
-            console.log(data.information);
+            alert(data.information);
         }
         // console.log(data.message);
     }
