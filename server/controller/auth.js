@@ -45,7 +45,11 @@ const signUp = async (req, res) => {
             phoneNumber
         });
 
-        user.save();
+        user.save().then(() => {
+            console.log('ban gya!');
+        }).catch(err => {
+            console.log('phuka!');
+        });
         console.log('signup successfull');
         res.status(200).json({message: 'signup successfull'});
     }
