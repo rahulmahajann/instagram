@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { createNewPost } from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 const initialValue = {
     caption: '',
@@ -9,6 +13,8 @@ const initialValue = {
 }
 
 function NewPost(){
+
+    
     const [postInformation, setPostInformation] = useState(initialValue);
     const navigate = useNavigate();
     const username = localStorage.getItem('username');
@@ -34,14 +40,15 @@ function NewPost(){
         // const data = await 
         const data = await createNewPost(postInformation);
         if(data.message){
+            toast.success('Post created Successfully')
             navigate(`/profile/${username}`)
         }else{
-            alert(data.information);
+            toast.error(data.information);
         }
         // console.log(data.message);
     }
 
-    console.log(postInformation);
+    // console.log(postInformation);
 
     return(
         <>

@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 function Profile(){
 
+
     const [data, setData] = useState('')
+    const [postData, setPostData] = useState('');
     const username = localStorage.getItem('username');
 
-    console.log(username);
+    // console.log(username);
 
     const navigate = useNavigate()
 
@@ -17,39 +19,32 @@ function Profile(){
 
     useEffect(() => {
         const fetchData = async() => {
-            console.log(username);
+            // console.log(username);
             const data = await getUserDetails(username);
             // console.log(data);
             // const postData = await getUserPosts(username);
             setData(data)
         }
         const fetchPost = async () => {
-            console.log(username);
+            // console.log(username);
             const postData = await getUserPosts(username);
+            // console.log(postData);
+            setPostData(postData);
         }
         fetchData();
         fetchPost();
     }, [])
 
-    // useEffect(() => {
-    //     const fetchPost = async () => {
-    //         console.log(username);
-    //         const postData = await getUserPosts(username);
-    //     }
-    //     fetchPost();
-    // })
-    console.log(data);
+    console.log(postData);
     const newData = Object.values(data)
-    console.log(newData);
-    newData.map(item => {
-        console.log(item);
-    })
+    // console.log(newData);
+    
     return(
 
         <>
             {
-                newData && newData.map(item => (
-                    <p>{item}</p>
+                newData && newData.map((item, ind) => (
+                    <p key = {ind}>{item}</p>
                 ))
             }
             
