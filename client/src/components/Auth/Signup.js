@@ -22,7 +22,7 @@ function Signup(){
 
     const saveData = async (e) => {
         e.preventDefault();
-        console.log('click krdo!');
+        // console.log('click krdo!');
         // console.log(userData);
         const apiResponse = await signup(userData);
         // console.log(apiResponse);

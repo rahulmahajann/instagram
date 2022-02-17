@@ -26,7 +26,7 @@ function Login(){
         // console.log(apiResponse.information.name);
         if (apiResponse.information.message === 'successfully logged in!'){
             localStorage.setItem("token", apiResponse.information.token);
-            localStorage.setItem("name", apiResponse.information.nameOfUser);
+            localStorage.setItem("username", apiResponse.information.userName);
             toast.success('logged in succesful')
             navigate('/home')
         }else{

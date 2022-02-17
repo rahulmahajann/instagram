@@ -72,7 +72,7 @@ const signIn = async (req, res) => {
             return res.json({
                 message: 'successfully logged in!',
                 token,
-                nameOfUser: isUserName.name
+                userName: isUserName.username
             })
         }else{
             return res.json({message: 'username or password is not valid'})
@@ -85,7 +85,7 @@ const signIn = async (req, res) => {
 
 const findUserByUserName = async (req, res) => {
     const username = req.body.username;
-    
+    console.log(username);
     if(!username){
         return res.json({message: 'please enter the username for resetting the password'});        
     }

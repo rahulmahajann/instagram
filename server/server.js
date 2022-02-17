@@ -11,6 +11,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 const auth = require('./routes/auth');
+const post = require('./routes/post');
+const user = require('./routes/user');
 const databaseConnection = require('./dataBase');
 
 const PORT = 5000;
@@ -21,6 +23,8 @@ app.get('/test', (req, res) => {
 })
 
 app.use('/', auth);
+app.use('/', post);
+app.use('/', user);
 
 app.listen(PORT, () => {
     console.log(`port running on ${PORT}`);

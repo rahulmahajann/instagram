@@ -29,7 +29,7 @@ function ResetPassword(props){
     }
     // console.log(password);
 
-    // console.log(userDetail);
+    // console.log(userDetail); 
 
     return(
         <form>

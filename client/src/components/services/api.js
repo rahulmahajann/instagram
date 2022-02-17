@@ -50,3 +50,35 @@ export const verifyOTP = async (otpValue, encryptedOTP) => {
         console.log(err);
     }
 }
+
+export const getUserDetails = async (userData) => {
+    try{
+        console.log(typeof userData)
+        const awazAii = await axios.post(`${URL}/userdata`, {userData});
+        // console.log(awazAii);
+        return awazAii.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export const getUserPosts = async(userData) => {
+    try{
+        console.log(userData);
+        const awazAii = await axios.post(`${URL}/userpost`, {userData});
+        console.log(awazAii);
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export const createNewPost = async(postInformation) => {
+    try{
+        console.log(postInformation);
+        const awazAii = await axios.post(`${URL}/createpost`, postInformation);
+        console.log(awazAii);
+        return awazAii.data;
+    }catch(err){
+        console.log(err);
+    }
+}
