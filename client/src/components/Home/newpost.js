@@ -8,7 +8,6 @@ toast.configure();
 
 const initialValue = {
     caption: '',
-    postImage: '',
     postedBy: ''
 }
 
@@ -16,9 +15,33 @@ function NewPost(){
 
     
     const [postInformation, setPostInformation] = useState(initialValue);
+    const [localImage, setLocalImage] = useState('');
+    const [postImage, setPostImage] = useState('');
     const navigate = useNavigate();
     const username = localStorage.getItem('username');
     // const 
+
+    // const imageDetails = () => {
+    //     // e.preventDefault();
+    //     const imageData = new FormData();
+    //     imageData.append('file', localImage);
+    //     imageData.append('upload_preset', 'instagrampost');
+    //     imageData.append('cloud_name', 'rahulmahajan');
+    //     console.log(imageData);
+    //     fetch('https://api.cloudinary.com/v1_1/rahulmahajan/image/upload', {
+    //         method: 'post',
+    //         body: imageData
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         console.log(data);
+    //         setPostImage(data.url)
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //     })
+
+    // }
 
     useEffect(()=> {
         setPostInformation({
@@ -38,7 +61,23 @@ function NewPost(){
         e.preventDefault();
         // console.log(postInformation);
         // const data = await 
-        const data = await createNewPost(postInformation);
+        // await imageDetails();
+
+        // var bye = ''
+
+        const imageData = new FormData();
+        imageData.append('file', localImage);
+        imageData.append('upload_preset', 'instagrampost');
+        imageData.append('cloud_name', 'rahulmahajan');
+        console.log(imageData);
+        const keseHo = await fetch('https://api.cloudinary.com/v1_1/rahulmahajan/image/upload', {
+            method: 'post',
+            body: imageData
+        })
+        const res = await keseHo.json();
+        // console.log(res.url);
+
+        const data = await createNewPost(postInformation, res.url);
         if(data.message){
             toast.success('Post created Successfully')
             navigate(`/profile/${username}`)
@@ -49,12 +88,14 @@ function NewPost(){
     }
 
     // console.log(postInformation);
+    // console.log(localImage);
 
     return(
         <>
             <form>
                 <input name = 'caption' onChange = {(e) => handleChange(e)} placeholder="caption" />
-                <input name = 'postImage' onChange = {(e) => handleChange(e)} placeholder="image" />
+                <input type = 'file' onChange = {(e) => setLocalImage(e.target.files[0])} />
+                {/* <input name = 'postImage' onChange = {(e) => handleChange(e)} placeholder="image" /> */}
                 <button type = 'submit' onClick = {(e) => savePost(e)}>Save Post</button>
             </form>
         </>

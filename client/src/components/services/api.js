@@ -73,10 +73,11 @@ export const getUserPosts = async(userData) => {
     }
 }
 
-export const createNewPost = async(postInformation) => {
+export const createNewPost = async(postInformation, postImage) => {
     try{
         // console.log(postInformation);
-        const awazAii = await axios.post(`${URL}/createpost`, postInformation);
+        // console.log(postImage);
+        const awazAii = await axios.post(`${URL}/createpost`, {postInformation, postImage});
         // console.log(awazAii);
         return awazAii.data;
     }catch(err){

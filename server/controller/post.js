@@ -3,10 +3,12 @@ const User = require('../model/user');
 
 const createPost = async (req, res) => {
     
-    const caption = req.body.caption;
+    // console.log(req.body);
+
+    const caption = req.body.postInformation.caption;
     const postImage = req.body.postImage;
 
-    const username = req.body.postedBy;
+    const username = req.body.postInformation.postedBy;
 
     // console.log(caption, postImage);
 
@@ -28,7 +30,7 @@ const createPost = async (req, res) => {
     })
     
     await newPost.save()
-    console.log(newPost);
+    // console.log(newPost);
     res.json({
         message: true,
         post: newPost
@@ -47,14 +49,14 @@ const getAllPost = async (req, res) => {
 
 const getUserPost = async (req, res) => {
     const username = req.body.userData;
-    console.log(username);
+    // console.log(username);
 
     const userInformation = await User.findOne({username})
 
-    console.log(userInformation._id);
+    // console.log(userInformation._id);
 
     const postInformation = await Post.find({postedBy: userInformation._id})
-    console.log(postInformation);
+    // console.log(postInformation);
     res.json(postInformation);
 
 }
