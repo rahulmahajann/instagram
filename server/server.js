@@ -22,6 +22,10 @@ app.get('/test', (req, res) => {
     res.send('this is test route');
 })
 
+// if(process.env.NODE_ENV === 'production'){
+//     app.use(express.static('client/build'))
+// }
+
 app.use('/', auth);
 app.use('/', post);
 app.use('/', user);

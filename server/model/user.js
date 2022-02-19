@@ -6,6 +6,10 @@ const UserSchema = mongoose.Schema({
         required: true,
         unique: true
     },
+    userImage: {
+        type: String,
+        default: 'hello'
+    }, 
     emailId: {
         type: String,
         required: true,

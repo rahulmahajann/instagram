@@ -6,13 +6,14 @@ const JWT = require('jsonwebtoken');
 const JWT_SECRET = 'fghjmnvgnv';
 
 const signUp = async (req, res) => {
-    const username = req.body.username;
-    const emailId = req.body.emailId;
-    const password = req.body.password;
-    const name = req.body.name;
-    const phoneNumber = req.body.phoneNumber;
+    const userImage = req.body.imageUrl;
+    const username = req.body.userData.username;
+    const emailId = req.body.userData.emailId;
+    const password = req.body.userData.password;
+    const name = req.body.userData.name;
+    const phoneNumber = req.body.userData.phoneNumber;
 
-    if(!username || !emailId || !password || !name || !phoneNumber){
+    if(!userImage || !username || !emailId || !password || !name || !phoneNumber){
         return res.json({message: 'please fill all the fields'});
     }
 
@@ -42,8 +43,11 @@ const signUp = async (req, res) => {
             emailId,
             password: encryptedPassword,
             name,
-            phoneNumber
+            phoneNumber,
+            userImage
         });
+
+        console.log(user);
 
         user.save().then(() => {
             console.log('ban gya!');

@@ -53,14 +53,13 @@ function Home(){
                 <Link style = {home__navbarItems}to = {`/profile/${data}`}>Profile</Link>
                 <button style = {home__navbarItems} onClick = {() => clickEvent()}>LogOut</button>
             </div>
-            <h1>hello {data}</h1>
-            <div style = {home__component} >
 
-            {
-                allPosts && allPosts.map((item, ind) => (
-                    <Post data = {item} />
-                ))
-            }
+            <div style = {home__component} >
+                {
+                    allPosts && allPosts.map((item, ind) => (
+                        <Post data = {item} />
+                    ))
+                }
             </div>
         </>
     )

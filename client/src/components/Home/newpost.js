@@ -19,29 +19,7 @@ function NewPost(){
     const [postImage, setPostImage] = useState('');
     const navigate = useNavigate();
     const username = localStorage.getItem('username');
-    // const 
 
-    // const imageDetails = () => {
-    //     // e.preventDefault();
-    //     const imageData = new FormData();
-    //     imageData.append('file', localImage);
-    //     imageData.append('upload_preset', 'instagrampost');
-    //     imageData.append('cloud_name', 'rahulmahajan');
-    //     console.log(imageData);
-    //     fetch('https://api.cloudinary.com/v1_1/rahulmahajan/image/upload', {
-    //         method: 'post',
-    //         body: imageData
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         console.log(data);
-    //         setPostImage(data.url)
-    //     })
-    //     .catch(err => {
-    //         console.log(err);
-    //     })
-
-    // }
 
     useEffect(()=> {
         setPostInformation({

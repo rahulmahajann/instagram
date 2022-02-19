@@ -2,9 +2,9 @@ import axios from 'axios';
 
 const URL = 'http://localhost:5000';
 
-export const signup = async (userData) => {
+export const signup = async (userData, imageUrl) => {
     try{
-        const awazAii = await axios.post(`${URL}/signUp`, userData);
+        const awazAii = await axios.post(`${URL}/signUp`, {userData, imageUrl});
         return {message: awazAii.data.message}
     }catch (err) {
         console.log(err);;

@@ -17,6 +17,37 @@ function Profile(){
         margin: '10px'
     }
 
+    const profile__user = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: '10px',
+        flexDirection: 'column',
+        
+    }
+
+    const profile__userInformation = {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: 'red',
+        widht: '100vw',
+    }
+
+    const profile__userInformationEach = {
+        // marginLeft: '80px',
+        // marginRight: '80px'
+    }
+
+    const profile__userImage = {
+        marginLeft: '45vw',
+        marginRight: '45vw',
+        // justifyContent: 'center',
+        borderRadius: '100%',
+        height: '100px',
+        width: '100px'
+    }
+
     const [data, setData] = useState('')
     const [postData, setPostData] = useState('');
     const username = localStorage.getItem('username');
@@ -47,8 +78,10 @@ function Profile(){
         fetchPost();
     }, [])
 
-    // console.log(postData);
-    const newData = Object.values(data)
+    console.log(postData);
+    console.log(data);
+    const newData = [];
+    newData.push(data)
     console.log(newData);
     
     return(
@@ -64,11 +97,16 @@ function Profile(){
 
             {
                 newData && newData.map((item, ind) => (
-                    <p key = {ind}>{item}</p>
+                    <div style = {profile__user}>
+                        <img style = {profile__userImage} src = {item.userImage} alt = 'user image phuki'  />
+                        <div style = {profile__userInformation} >
+                            <p style = {profile__userInformationEach}>{item.username}</p>
+                            <p style = {profile__userInformationEach}>{item.name}</p>
+                            <p style = {profile__userInformationEach}>{item.emailId}</p>
+                        </div>
+                    </div>
                 ))
             }
-
-            
 
             {
                 postData && postData.map((item, ind) => (

@@ -17,6 +17,7 @@ toast.configure();
 function Signup(){
 
     const [userData, setUserData] = useState(initialValue);
+    const [localImage, setLocalImage] = useState('');
 
     const navigate = useNavigate();
 
@@ -24,7 +25,21 @@ function Signup(){
         e.preventDefault();
         // console.log('click krdo!');
         // console.log(userData);
-        const apiResponse = await signup(userData);
+
+        const imageData = new FormData();
+        imageData.append('file', localImage);
+        imageData.append('upload_preset', 'instagrampost');
+        imageData.append('cloud_name', 'rahulmahajan');
+        console.log(imageData);
+        const keseHo = await fetch('https://api.cloudinary.com/v1_1/rahulmahajan/image/upload', {
+            method: 'post',
+            body: imageData
+        })
+        const res = await keseHo.json();
+
+        console.log(res.url);
+
+        const apiResponse = await signup(userData, res.url);
         // console.log(apiResponse);
         if(apiResponse.message === 'signup successfull'){
             toast.success('signup successfull');
@@ -45,6 +60,7 @@ function Signup(){
     return(
         <>
         <form>
+        <input type = 'file' onChange = {(e) => setLocalImage(e.target.files[0])} />
             <input type="text" name="username" placeholder="username" onChange={ (e) => handleChange(e) } required />
             <input type='email' name="emailId" placeholder="email id" onChange={ (e) => handleChange(e) } required />
             <input type = 'password' name="password" placeholder="password" onChange={ (e) => handleChange(e) } required />
