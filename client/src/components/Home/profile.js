@@ -1,10 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { getUserDetails, getUserPosts } from '../services/api';
 import { useNavigate, Link } from 'react-router-dom';
-import Post from '../Posts/profilePost';
+import ProfilePost from '../Posts/profilePost';
 
 function Profile(){
 
+
+    const profile__navbar = {
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        backgroundColor: 'cyan',
+    }
+
+    const profile__navbarItems = {
+        margin: '10px'
+    }
 
     const [data, setData] = useState('')
     const [postData, setPostData] = useState('');
@@ -38,30 +49,30 @@ function Profile(){
 
     // console.log(postData);
     const newData = Object.values(data)
-    // console.log(newData);
+    console.log(newData);
     
     return(
 
         <>
+
+            <div style = {profile__navbar} >
+                <button style = {profile__navbarItems} onClick={(e) => handleChange(e)}>
+                    Create New Post
+                </button>
+                <Link to = {'/home'} style = {profile__navbarItems} >Home</Link>
+            </div>
+
             {
                 newData && newData.map((item, ind) => (
                     <p key = {ind}>{item}</p>
                 ))
             }
 
-            <button onClick={(e) => handleChange(e)}>
-                Create New Post
-            </button>
-            <Link to = {'/home'}>Home</Link>
+            
 
             {
                 postData && postData.map((item, ind) => (
-                    // <ul key = {ind}>
-                    //     <li>{item.caption}</li>
-                    //     <li>{item.postImage}</li>
-                    //     <li>{item.postedBy}</li>
-                    // </ul>
-                    <Post data = {item} />
+                    <ProfilePost data = {item} />
                 ))
             }
             

@@ -12,7 +12,17 @@ function Home(){
         justifyContent: 'center',
         alignItems: 'center',
         width: '80%'
+    }
 
+    const home__navbar = {
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        backgroundColor: 'cyan',
+    }
+
+    const home__navbarItems = {
+        margin: '10px'
     }
 
     const data = localStorage.getItem('username');
@@ -39,9 +49,11 @@ function Home(){
 
     return(
         <>
+            <div style = {home__navbar}>
+                <Link style = {home__navbarItems}to = {`/profile/${data}`}>Profile</Link>
+                <button style = {home__navbarItems} onClick = {() => clickEvent()}>LogOut</button>
+            </div>
             <h1>hello {data}</h1>
-            <Link to = {`/profile/${data}`}>Profile</Link>
-            <button onClick = {() => clickEvent()}>LogOut</button>
             <div style = {home__component} >
 
             {
