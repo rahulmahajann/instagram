@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Post from '../Posts/post';
 
 import { getAllPosts } from '../services/api';
 
 function Home(){
 
+    const home__component = {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '80%'
+
+    }
 
     const data = localStorage.getItem('username');
     // console.log(data);
@@ -33,16 +42,14 @@ function Home(){
             <h1>hello {data}</h1>
             <Link to = {`/profile/${data}`}>Profile</Link>
             <button onClick = {() => clickEvent()}>LogOut</button>
+            <div style = {home__component} >
 
             {
                 allPosts && allPosts.map((item, ind) => (
-                    <ul key = {ind}>
-                        <li>caption: {item.caption}</li>
-                        <li>post image: {item.postImage}</li>
-                        <li>username: {item.postedBy.username}</li>
-                    </ul>
+                    <Post data = {item} />
                 ))
             }
+            </div>
         </>
     )
 }

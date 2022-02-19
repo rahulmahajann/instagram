@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getUserDetails, getUserPosts } from '../services/api';
 import { useNavigate, Link } from 'react-router-dom';
+import Post from '../Posts/profilePost';
 
 function Profile(){
 
@@ -55,11 +56,12 @@ function Profile(){
 
             {
                 postData && postData.map((item, ind) => (
-                    <ul key = {ind}>
-                        <li>{item.caption}</li>
-                        <li>{item.postImage}</li>
-                        <li>{item.postedBy}</li>
-                    </ul>
+                    // <ul key = {ind}>
+                    //     <li>{item.caption}</li>
+                    //     <li>{item.postImage}</li>
+                    //     <li>{item.postedBy}</li>
+                    // </ul>
+                    <Post data = {item} />
                 ))
             }
             
