@@ -11,7 +11,7 @@ function Home(){
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '80%'
+        // width: '80%'
     }
 
     const home__navbar = {

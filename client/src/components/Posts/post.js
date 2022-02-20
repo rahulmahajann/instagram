@@ -35,13 +35,44 @@ function Post(props) {
         fontSize: '20px',
     }
 
+    const complete__post = {
+        backgroundColor: 'orange',
+        margin: '20px auto',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+
+    const post__comment = {
+        width: '80%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+
+    const comment__field ={
+        width: '80%',
+    }
+
+    const comment__button = {
+        width: '20%',
+        whiteSpace: 'nowrap',
+    }
+
     return(
-        <div style = {post__frame}>
-            <h3 style = {post__username}>{item.postedBy.username}</h3>
-            <hr style = {post__segregate} />
-            <div><img style = {post__image} src = {item.postImage} alt  = 'sorry image phuk gayi'/></div>
-            <hr style = {post__segregate} />
-            <p style = {post__caption}>{item.caption}</p>
+        <div style = {complete__post}>
+            <div style = {post__frame}>
+                <h3 style = {post__username}>{item.postedBy.username}</h3>
+                <hr style = {post__segregate} />
+                <div><img style = {post__image} src = {item.postImage} alt  = 'sorry image phuk gayi'/></div>
+                <hr style = {post__segregate} />
+                <p style = {post__caption}> {item.postedBy.username} {item.caption}</p>
+            </div>
+            <div style = {post__comment}>
+                <input style = {comment__field} type = 'text' />
+                <button style = {comment__button} type = 'submit'> Add </button>
+            </div>
         </div>
     )
 }
