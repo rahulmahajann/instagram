@@ -25,6 +25,11 @@ function Home(){
         margin: '10px'
     }
 
+    const main__component = {
+        display: 'flex',
+        flexDirection: 'column',
+    }
+
     const data = localStorage.getItem('username');
     // console.log(data);
 
@@ -48,7 +53,7 @@ function Home(){
     // console.log(allPosts);
 
     return(
-        <>
+        <div style = {main__component}>
             <div style = {home__navbar}>
                 <Link style = {home__navbarItems}to = {`/profile/${data}`}>Profile</Link>
                 <button style = {home__navbarItems} onClick = {() => clickEvent()}>LogOut</button>
@@ -61,7 +66,7 @@ function Home(){
                     ))
                 }
             </div>
-        </>
+        </div>
     )
 }
 
