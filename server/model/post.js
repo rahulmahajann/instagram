@@ -10,6 +10,14 @@ const postSchema = new mongoose.Schema({
         type: String,
         default: 'no image'
     },
+    comment: {
+        commentBy: {
+            type: String,
+        },
+        commentCaption: {
+            type: String,
+        }
+    },
     postedBy: {
         type: ObjectId,
         ref: 'instaUser'

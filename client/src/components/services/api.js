@@ -94,3 +94,17 @@ export const getAllPosts = async () => {
         console.log(err);
     }
 }
+
+export const addComment = async (commentOn, commentCaption, commentBy) => {
+    try{
+        // console.log({
+        //     commentOn,
+        //     commentCaption,
+        //     commentBy,
+        // });
+        const awazAii = await axios.put(`${URL}/addcomment`, {commentOn, commentCaption, commentBy})
+        console.log(awazAii);
+    }catch(err){
+        console.log(err);
+    }
+}

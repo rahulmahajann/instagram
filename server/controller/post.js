@@ -61,4 +61,22 @@ const getUserPost = async (req, res) => {
 
 }
 
-module.exports = { createPost, getAllPost, getUserPost };
+const addComment = async (req, res) => {
+    console.log(req.body);
+
+    const commentOn = req.body.commentOn;
+    const commentCaption = req.body.commentCaption;
+    const commentBy = req.body.commentBy;
+
+    const dataToAdd = {
+        commentCaption,
+        commentBy,
+    }
+
+    await Post.findByIdAndUpdate(commentOn, {
+        comment: dataToAdd
+    })
+
+}
+
+module.exports = { createPost, getAllPost, getUserPost, addComment };

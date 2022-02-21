@@ -78,11 +78,11 @@ function Profile(){
         fetchPost();
     }, [])
 
-    console.log(postData);
-    console.log(data);
+    // console.log(postData);
+    // console.log(data);
     const newData = [];
     newData.push(data)
-    console.log(newData);
+    // console.log(newData);
     
     return(
 

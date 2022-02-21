@@ -154,8 +154,8 @@ const resetPassword = async (req, res) => {
     const id = req.body.userData;
     const password = req.body.password;
 
-    console.log(req.body);
-    console.log(id, password);
+    // console.log(req.body);
+    // console.log(id, password);
 
     const newPassword = await bcrypt.hash(password, 15);
 
