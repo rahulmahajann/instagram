@@ -1,6 +1,6 @@
 const Post = require('../model/post');
 const User = require('../model/user');
-const Comment = require('../model/comment');
+const Comment = require('../model/commentmodel');
 
 const createPost = async (req, res) => {
     
@@ -80,10 +80,10 @@ const addComment = async (req, res) => {
 
 const getPostComments = async ( req, res ) => {
     const commentOf = req.body.commentOf;
-    console.log(commentOf);
+    // console.log(commentOf);
     const data = await Comment.find({commentOn: commentOf})
 
-    console.log(data);
+    // console.log(data);
     // res.send(data)
     return res.json({
         data
