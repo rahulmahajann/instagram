@@ -59,7 +59,7 @@ function Post(props) {
                 <hr style = {post__segregate} />
                 <div style = {image__container} ><img style = {post__image} src = {item.postImage} alt  = 'sorry image phuk gayi'/></div>
                 <hr style = {post__segregate} />
-                <p style = {post__caption}> {item.postedBy.username} {item.caption}</p>
+                <p style = {post__caption}> {item.postedBy.username}: {item.caption}</p>
             </div>
 
             <Comment commentOf = {item._id} />
