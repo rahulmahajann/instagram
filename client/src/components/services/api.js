@@ -108,3 +108,13 @@ export const addComment = async (commentOn, commentCaption, commentBy) => {
         console.log(err);
     }
 }
+
+export const getPostComments = async (commentOf) => {
+    try{
+        const awazAii = await axios.post(`${URL}/postcomment`,{commentOf});
+        // console.log(awazAii);
+        return awazAii;
+    }catch(err){
+        console.log(err);
+    }
+}

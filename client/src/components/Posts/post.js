@@ -1,4 +1,5 @@
 import React from 'react';
+import Comment from '../social/comment';
 import AddComment from '../social/addcomment';
 
 function Post(props) {
@@ -54,6 +55,8 @@ function Post(props) {
                 <hr style = {post__segregate} />
                 <p style = {post__caption}> {item.postedBy.username} {item.caption}</p>
             </div>
+
+            <Comment commentOf = {item._id} />
             
             <AddComment commentOn = {item._id} />
 

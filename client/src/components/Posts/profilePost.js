@@ -1,9 +1,10 @@
 import React from 'react';
+import Comment from '../social/comment';
 
 function Post(props) {
 
     const item = props.data;
-    console.log(item);
+    // console.log(item);
 
     const post__frame = {
         backgroundColor: '#285dad',
@@ -35,13 +36,26 @@ function Post(props) {
         fontSize: '20px',
     }
 
+    const complete__post = {
+        backgroundColor: 'orange',
+        margin: '20px auto',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+
     return(
-        <div style = {post__frame}>
-            <h3 style = {post__username}>{item.postedBy}</h3>
-            <hr style = {post__segregate} />
-            <div><img style = {post__image} src = {item.postImage} alt  = 'sorry image phuk gayi'/></div>
-            <hr style = {post__segregate} />
-            <p style = {post__caption}>{item.caption}</p>
+        <div style = {complete__post} >
+            <div style = {post__frame}>
+                <h3 style = {post__username}>{item.postedBy}</h3>
+                <hr style = {post__segregate} />
+                <div><img style = {post__image} src = {item.postImage} alt  = 'sorry image phuk gayi'/></div>
+                <hr style = {post__segregate} />
+                <p style = {post__caption}>{item.caption}</p>
+            </div>
+
+            <Comment commentOf = {item._id} />
         </div>
     )
 }

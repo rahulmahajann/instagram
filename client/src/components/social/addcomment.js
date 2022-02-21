@@ -34,6 +34,7 @@ function AddComment(props) {
         // console.log(commentCaption);
         // console.log(commentOn);
         await addComment(commentOn, commentCaption, commentBy);
+        setCommentCaption('');
         console.log('button click hua!');
     }
 
@@ -42,7 +43,7 @@ function AddComment(props) {
         <>
             <div style = {post__comment}>
                 <input style = {comment__field} onChange = { (e) => {handleChange(e)} } type = 'text' />
-                <button style = {comment__button} onClick = { (e) => {saveComment(e)}}type = 'submit'> Add </button>
+                <button style = {comment__button} onClick = { saveComment }type = 'submit'> Add </button>
             </div>
         </>
     )

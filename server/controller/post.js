@@ -1,5 +1,6 @@
 const Post = require('../model/post');
 const User = require('../model/user');
+const Comment = require('../model/comment');
 
 const createPost = async (req, res) => {
     
@@ -62,21 +63,32 @@ const getUserPost = async (req, res) => {
 }
 
 const addComment = async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
 
     const commentOn = req.body.commentOn;
     const commentCaption = req.body.commentCaption;
     const commentBy = req.body.commentBy;
 
-    const dataToAdd = {
+    const newComment = new Comment({
         commentCaption,
         commentBy,
-    }
+        commentOn
+    })
 
-    await Post.findByIdAndUpdate(commentOn, {
-        comment: dataToAdd
+    await newComment.save();
+}
+
+const getPostComments = async ( req, res ) => {
+    const commentOf = req.body.commentOf;
+    console.log(commentOf);
+    const data = await Comment.find({commentOn: commentOf})
+
+    console.log(data);
+    // res.send(data)
+    return res.json({
+        data
     })
 
 }
 
-module.exports = { createPost, getAllPost, getUserPost, addComment };
+module.exports = { createPost, getAllPost, getUserPost, addComment, getPostComments };

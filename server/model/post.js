@@ -11,12 +11,8 @@ const postSchema = new mongoose.Schema({
         default: 'no image'
     },
     comment: {
-        commentBy: {
-            type: String,
-        },
-        commentCaption: {
-            type: String,
-        }
+        type: ObjectId,
+        ref: 'commentTable'
     },
     postedBy: {
         type: ObjectId,
