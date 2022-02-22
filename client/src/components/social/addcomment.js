@@ -35,14 +35,14 @@ function AddComment(props) {
         // console.log(commentOn);
         await addComment(commentOn, commentCaption, commentBy);
         setCommentCaption('');
-        console.log('button click hua!');
+        // console.log('button click hua!');
     }
 
 
     return(
         <>
             <div style = {post__comment}>
-                <input style = {comment__field} onChange = { (e) => {handleChange(e)} } type = 'text' />
+                <input style = {comment__field} value = {commentCaption} onChange = { (e) => {handleChange(e)} } type = 'text' />
                 <button style = {comment__button} onClick = { saveComment }type = 'submit'> Add </button>
             </div>
         </>
