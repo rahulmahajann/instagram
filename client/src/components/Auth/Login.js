@@ -45,20 +45,56 @@ function Login(){
 
     // console.log(userData);
 
+    const main__screen = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+
+    const login__screen = {
+        display: 'flex',
+        background: 'linear-gradient(to right, #833AB4, #5851DB, #405DE6)',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '15vh',
+        border: '2px solid',
+        padding: '10px',
+        height: '50vh',
+        width: '40vw'
+    }
+
+    const form__fields = {
+        margin: '10px auto',
+        width: '80%',
+        height: '7%'
+    }
+
+    const form__button = {
+        margin: '10px auto',
+        width: '80%',
+        height: '7%'
+    }
+
+    const link__style = {
+        color: '#FCAF45',
+    }
+
     return(
-        <>
-            <form>
-                <input type="text" name="username" onChange = { (e) => handleChange(e) } placeholder="username" required />
-                <input type = 'password' name="password" onChange = { (e) => handleChange(e) } placeholder="password" required />
-                <button type = 'submit' onClick = { (e) => validateData(e) }>Login</button>
-            </form>
-            <Link to = {'/finduserforreset'}>
-                <p>forgot password? Reset here!</p>
-            </Link>
-            <Link to = {'/signup'}>
-                <p>don't have account? SignUp</p>
-            </Link>
-        </>
+        <div style = {main__screen} >
+            <div style = {login__screen} >
+                <h1>Login to Mahajan's</h1>
+                <input style = {form__fields}  type="text" name="username" onChange = { (e) => handleChange(e) } placeholder="username" required />
+                <input style = {form__fields} type = 'password' name="password" onChange = { (e) => handleChange(e) } placeholder="password" required />
+                <button style = {form__button}  type = 'submit' onClick = { (e) => validateData(e) }>Login</button>
+                <Link style = {link__style}  to = {'/finduserforreset'}>
+                    <p>forgot password? Reset here!</p>
+                </Link>
+                <Link to = {'/signup'} style = {link__style} >
+                    <p>don't have account? SignUp</p>
+                </Link>
+            </div>
+        </div>
     )
 }
 

@@ -8,7 +8,6 @@ function Post(props) {
 
     const post__frame = {
         // backgroundColor: '#285dad',
-        background: 'linear-gradient(to right, #F77737, #FCAF45, #F77737, #F56040, #FD1D1D, #E1306C, #C13584, #833AB4, #5851DB, #405DE6)',
         border: '1px dashed',
         margin: '20px auto',
         width: '80%'
@@ -40,6 +39,7 @@ function Post(props) {
     const complete__post = {
         margin: '20px auto',
         display: 'flex',
+        background: 'linear-gradient(to right, #F77737, #FCAF45, #F77737, #F56040, #FD1D1D, #E1306C, #C13584, #833AB4, #5851DB, #405DE6)',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
@@ -54,7 +54,6 @@ function Post(props) {
                 <hr style = {post__segregate} />
                 <p style = {post__caption}>{item.caption}</p>
             </div>
-
             <Comment commentOf = {item._id} />
         </div>
     )

@@ -55,16 +55,52 @@ function FindUserForReset(){
     }
     // console.log(userDetailForVerification);
     // console.log(isNextComponent);
+
+    const main__screen = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+
+    const resetpassword__screen = {
+        display: 'flex',
+        background: 'linear-gradient(to right, #833AB4, #5851DB, #405DE6)',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '15vh',
+        border: '2px solid',
+        padding: '10px',
+        height: '50vh',
+        width: '40vw'
+    }
+
+    const form__fields = {
+        margin: '10px auto',
+        width: '80%',
+        height: '7%'
+    }
+
+    const form__button = {
+        margin: '10px auto',
+        width: '80%',
+        height: '7%'
+    }
+
+    const link__style = {
+        color: '#FCAF45',
+    }
+
     return(
-        <>
-            <form>
-                <input type="text" name="username" disabled = {isNextComponent} onChange = { (e) => handleChange(e) } placeholder="username" required />
-                <button type = 'submit' onClick = { (e) => validateUser(e)} disabled = {isNextComponent} >Find User</button>
-            </form>
-            {
-                isNextComponent ? <ValidateUserByOtp data = {userDetailForVerification} /> : ''
-            }
-        </>
+        <div style = {main__screen} >
+            <div style = {resetpassword__screen}>
+                <input style = {form__fields} type="text" name="username" disabled = {isNextComponent} onChange = { (e) => handleChange(e) } placeholder="username" required />
+                    <button stle = {form__button} type = 'submit' onClick = { (e) => validateUser(e)} disabled = {isNextComponent} >Find User</button>
+                {
+                    isNextComponent ? <ValidateUserByOtp data = {userDetailForVerification} /> : ''
+                }
+            </div>
+        </div>
     )
 }
 

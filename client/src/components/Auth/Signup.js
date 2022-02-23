@@ -57,21 +57,57 @@ function Signup(){
     }
     // console.log(userData);
 
+    const main__screen = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+
+    const signup__screen = {
+        display: 'flex',
+        background: 'linear-gradient(to right, #833AB4, #5851DB, #405DE6)',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '15vh',
+        border: '2px solid',
+        padding: '10px',
+        height: '50vh',
+        width: '40vw'
+    }
+
+    const form__fields = {
+        margin: '10px auto',
+        width: '80%',
+        height: '7%'
+    }
+
+    const form__button = {
+        margin: '10px auto',
+        width: '80%',
+        height: '7%'
+    }
+
+    const link__style = {
+        color: '#FCAF45',
+    }
+
     return(
-        <>
-        <form>
-        <input type = 'file' onChange = {(e) => setLocalImage(e.target.files[0])} />
-            <input type="text" name="username" placeholder="username" onChange={ (e) => handleChange(e) } required />
-            <input type='email' name="emailId" placeholder="email id" onChange={ (e) => handleChange(e) } required />
-            <input type = 'password' name="password" placeholder="password" onChange={ (e) => handleChange(e) } required />
-            <input type = 'text' name="name" placeholder="name" onChange={ (e) => handleChange(e) } required />
-            <input type = 'text' name="phoneNumber" placeholder="phone number" onChange={ (e) => handleChange(e) } required />
-            <button type = 'submit' onClick={ (e) => saveData(e) } >Sign Up</button>
-        </form>
-        <Link to = {'/'}>
-            <p>have account? login!</p>
-        </Link>
-        </>
+        <div style = {main__screen}>
+            <div style = {signup__screen}>
+                <h1>Sign Up to Mahajan's</h1>
+                <input style = {form__fields}  type = 'file' onChange = {(e) => setLocalImage(e.target.files[0])} />
+                <input style = {form__fields} type="text" name="username" placeholder="username" onChange={ (e) => handleChange(e) } required />
+                <input style = {form__fields} type='email' name="emailId" placeholder="email id" onChange={ (e) => handleChange(e) } required />
+                <input style = {form__fields} type = 'password' name="password" placeholder="password" onChange={ (e) => handleChange(e) } required />
+                <input style = {form__fields} type = 'text' name="name" placeholder="name" onChange={ (e) => handleChange(e) } required />
+                <input style = {form__fields} type = 'text' name="phoneNumber" placeholder="phone number" onChange={ (e) => handleChange(e) } required />
+                <button style = {form__button} type = 'submit' onClick={ (e) => saveData(e) } >Sign Up</button>
+                <Link style = {link__style} to = {'/'}>
+                    <p>have account? login!</p>
+                </Link>
+            </div>
+        </div>
     )
 }
 
