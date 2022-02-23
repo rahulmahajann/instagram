@@ -116,5 +116,15 @@ export const getPostComments = async (commentOf) => {
         return awazAii;
     }catch(err){
         console.log(err);
+    }    
+}
+
+export const searchUserAndPosts = async (username) => {
+    try{    
+        const awazAii = await axios.post(`${URL}/searchuserandpost`, {username})
+        // console.log(awazAii);
+        return awazAii.data;
+    }catch(err){
+        console.log(err);
     }
 }

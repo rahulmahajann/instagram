@@ -50,12 +50,15 @@ function Home(){
         fetchAllPosts();
     }, [])
 
+    
     // console.log(allPosts);
 
     return(
         <div style = {main__component}>
             <div style = {home__navbar}>
-                <Link style = {home__navbarItems}to = {`/profile/${data}`}>Profile</Link>
+                <Link style = {home__navbarItems} to = {`/profile/${data}`}>Profile</Link>
+                <Link style = {home__navbarItems} to = {`/search`}>Search User</Link>
+                
                 <button style = {home__navbarItems} onClick = {() => clickEvent()}>LogOut</button>
             </div>
 

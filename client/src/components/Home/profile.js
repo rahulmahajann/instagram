@@ -30,8 +30,8 @@ function Profile(){
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        widht: '100%',
         background: 'linear-gradient(to right, #F77737, #FCAF45, #F77737, #F56040, #FD1D1D, #E1306C, #C13584, #833AB4, #5851DB, #405DE6)',
-        widht: '100vw',
     }
 
     const profile__userInformationEach = {
@@ -84,6 +84,13 @@ function Profile(){
     newData.push(data)
     // console.log(newData);
     
+    const mainScreen = {
+        display : 'flex',
+        flexDirection : 'column',
+        justifyContent : 'center',
+        alignItems : 'center',
+    }
+
     return(
 
         <>
@@ -95,24 +102,26 @@ function Profile(){
                 <Link to = {'/home'} style = {profile__navbarItems} >Home</Link>
             </div>
 
-            {
-                newData && newData.map((item, ind) => (
-                    <div style = {profile__user}>
-                        <img style = {profile__userImage} src = {item.userImage} alt = 'user image phuki'  />
-                        <div style = {profile__userInformation} >
-                            <p style = {profile__userInformationEach}>{item.username}</p>
-                            <p style = {profile__userInformationEach}>{item.name}</p>
-                            <p style = {profile__userInformationEach}>{item.emailId}</p>
+            <div style = {mainScreen}>
+                {
+                    newData && newData.map((item, ind) => (
+                        <div style = {profile__user}>
+                            <img style = {profile__userImage} src = {item.userImage} alt = 'user image phuki'  />
+                            <div style = {profile__userInformation} >
+                                <p style = {profile__userInformationEach}>{item.username}</p>
+                                <p style = {profile__userInformationEach}>{item.name}</p>
+                                <p style = {profile__userInformationEach}>{item.emailId}</p>
+                            </div>
                         </div>
-                    </div>
-                ))
-            }
+                    ))
+                }
 
-            {
-                postData && postData.map((item, ind) => (
-                    <ProfilePost data = {item} />
-                ))
-            }
+                {
+                    postData && postData.map((item, ind) => (
+                        <ProfilePost data = {item} />
+                    ))
+                }
+            </div>
             
             
         </>

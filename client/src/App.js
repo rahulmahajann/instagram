@@ -7,6 +7,7 @@ import ValidateUserByOtp from './components/Auth/ValidateUserByOtp';
 import Home from './components/Home/home';
 import Profile from './components/Home/profile';
 import NewPost from './components/Home/newpost';
+import Search from './components/Home/search';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path = '/home' element = {<Home />} />
           <Route path = '/profile/:username' element = {<Profile />} />
           <Route path = '/createnewpost' element = { <NewPost /> } />
+          <Route path = '/search' element = { <Search /> } />
         </Routes>
       </BrowserRouter>
     </>
