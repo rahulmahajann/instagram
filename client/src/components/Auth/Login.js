@@ -60,26 +60,26 @@ function Login(){
         marginTop: '15vh',
         border: '2px solid',
         padding: '10px',
-        height: '50vh',
-        width: '40vw'
+        width: '75vw'
     }
 
     const form__fields = {
         margin: '10px auto',
         width: '80%',
-        height: '7%'
+        fontSize: '17px',  
+        background: '#ADD8E6'
     }
 
     const form__button = {
         margin: '10px auto',
         width: '80%',
+        fontSize: '17px',
         height: '7%'
     }
 
     const link__style = {
         color: '#FCAF45',
     }
-
     return(
         <div style = {main__screen} >
             <div style = {login__screen} >

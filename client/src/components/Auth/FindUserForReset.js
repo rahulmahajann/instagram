@@ -71,19 +71,20 @@ function FindUserForReset(){
         marginTop: '15vh',
         border: '2px solid',
         padding: '10px',
-        height: '50vh',
-        width: '40vw'
+        width: '75vw'
     }
 
     const form__fields = {
         margin: '10px auto',
         width: '80%',
-        height: '7%'
+        fontSize: '17px',  
+        background: '#ADD8E6'
     }
 
     const form__button = {
         margin: '10px auto',
         width: '80%',
+        fontSize: '17px',
         height: '7%'
     }
 
@@ -94,6 +95,7 @@ function FindUserForReset(){
     return(
         <div style = {main__screen} >
             <div style = {resetpassword__screen}>
+                <h1>Reset Password</h1>
                 <input style = {form__fields} type="text" name="username" disabled = {isNextComponent} onChange = { (e) => handleChange(e) } placeholder="username" required />
                     <button stle = {form__button} type = 'submit' onClick = { (e) => validateUser(e)} disabled = {isNextComponent} >Find User</button>
                 {

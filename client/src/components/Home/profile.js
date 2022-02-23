@@ -30,7 +30,8 @@ function Profile(){
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        widht: '100%',
+        // flexBasis: '50px',
+        widht: 'inherit',
         background: 'linear-gradient(to right, #F77737, #FCAF45, #F77737, #F56040, #FD1D1D, #E1306C, #C13584, #833AB4, #5851DB, #405DE6)',
     }
 
